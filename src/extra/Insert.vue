@@ -23,9 +23,14 @@ export default {
     },
     addLink() {
       this.$emit('command', 'createLink', prompt('لینک موردنظر خود را وارد فرمایید'));
-    }
-    , insertHtml() {
-      this.$emit('command', 'insertHTML', prompt('کد کپی شده از آپارات را وارد کنید.'));
+    },
+    insertHtml() {
+      let editCss = prompt('کد کپی شده از آپارات را وارد کنید.')
+
+      editCss = editCss.replace(/<style>.*<\/style>/g, '');
+      editCss = editCss.replace('<iframe', '<iframe style="width:604px;height:270px"');
+
+      this.$emit('command', 'insertHTML',editCss);
     }
   }
 }
